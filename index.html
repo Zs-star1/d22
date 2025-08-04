@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أوراق عمل الحروف الهجائية - الصف الأول</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Amiri', serif;
+        }
+        
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+        
+        .worksheet {
+            width: 210mm;
+            height: 297mm;
+            padding: 15mm;
+            margin: 0 auto 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .worksheet:last-child {
+            page-break-after: avoid;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                background: white;
+            }
+            .worksheet {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        
+        .letter-display {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        
+        .harakat {
+            font-size: 2.5rem;
+            color: #dc2626;
+        }
+        
+        .word-text {
+            font-size: 1.8rem;
+            color: #374151;
+        }
+        
+        .position-label {
+            font-size: 1.2rem;
+            color: #6b7280;
+            font-weight: bold;
+        }
+        
+        .dotted-line {
+            border-bottom: 2px dotted #d1d5db;
+            height: 40px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- أدوات التحكم -->
+    <div class="no-print bg-white p-4 shadow-md mb-6 text-center">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">أوراق عمل الحروف الهجائية - الصف الأول</h1>
+        <div class="flex justify-center gap-4 mb-4">
+            <button onclick="printWorksheets()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-bold">
+                طباعة جميع الأوراق
+            </button>
+            <button onclick="showWorksheet('all')" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-bold">
+                عرض الكل
+            </button>
+        </div>
+        <div class="flex flex-wrap justify-center gap-2">
+            <button onclick="showWorksheet(0)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">أ</button>
+            <button onclick="showWorksheet(1)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ب</button>
+            <button onclick="showWorksheet(2)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ت</button>
+            <button onclick="showWorksheet(3)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ث</button>
+            <button onclick="showWorksheet(4)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ج</button>
+            <button onclick="showWorksheet(5)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ح</button>
+            <button onclick="showWorksheet(6)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">خ</button>
+            <button onclick="showWorksheet(7)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">د</button>
+            <button onclick="showWorksheet(8)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ذ</button>
+            <button onclick="showWorksheet(9)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ر</button>
+            <button onclick="showWorksheet(10)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ز</button>
+            <button onclick="showWorksheet(11)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">س</button>
+            <button onclick="showWorksheet(12)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ش</button>
+            <button onclick="showWorksheet(13)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ص</button>
+            <button onclick="showWorksheet(14)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ض</button>
+            <button onclick="showWorksheet(15)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ط</button>
+            <button onclick="showWorksheet(16)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ظ</button>
+            <button onclick="showWorksheet(17)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ع</button>
+            <button onclick="showWorksheet(18)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">غ</button>
+            <button onclick="showWorksheet(19)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ف</button>
+            <button onclick="showWorksheet(20)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ق</button>
+            <button onclick="showWorksheet(21)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ك</button>
+            <button onclick="showWorksheet(22)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ل</button>
+            <button onclick="showWorksheet(23)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">م</button>
+            <button onclick="showWorksheet(24)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ن</button>
+            <button onclick="showWorksheet(25)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">هـ</button>
+            <button onclick="showWorksheet(26)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">و</button>
+            <button onclick="showWorksheet(27)" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">ي</button>
+        </div>
+    </div>
+
+    <!-- أوراق العمل -->
+    <div id="worksheets-container">
+        <!-- سيتم إنشاء أوراق العمل هنا بواسطة JavaScript -->
+    </div>
+
+    <script>
+        const letters = [
+            {
+                letter: 'أ',
+                words: {
+                    beginning: ['أسد', 'أرنب', 'أحمد'],
+                    middle: ['سأل', 'رأس', 'مأكل'],
+                    end: ['قرأ', 'بدأ', 'ملأ']
+                }
+            },
+            {
+                letter: 'ب',
+                words: {
+                    beginning: ['بيت', 'باب', 'بحر'],
+                    middle: ['كتب', 'حبل', 'صبر'],
+                    end: ['كتب', 'لعب', 'شرب']
+                }
+            },
+            {
+                letter: 'ت',
+                words: {
+                    beginning: ['تفاح', 'تمر', 'توت'],
+                    middle: ['كتاب', 'بيت', 'قطة'],
+                    end: ['بيت', 'قطة', 'بنت']
+                }
+            },
+            {
+                letter: 'ث',
+                words: {
+                    beginning: ['ثعلب', 'ثوب', 'ثلج'],
+                    middle: ['مثل', 'كثير', 'أثر'],
+                    end: ['حديث', 'ثالث', 'بحث']
+                }
+            },
+            {
+                letter: 'ج',
+                words: {
+                    beginning: ['جمل', 'جبل', 'جسر'],
+                    middle: ['رجل', 'نجم', 'مجد'],
+                    end: ['برج', 'سرج', 'خرج']
+                }
+            },
+            {
+                letter: 'ح',
+                words: {
+                    beginning: ['حصان', 'حليب', 'حديقة'],
+                    middle: ['محل', 'بحر', 'رحلة'],
+                    end: ['فرح', 'صبح', 'ريح']
+                }
+            },
+            {
+                letter: 'خ',
+                words: {
+                    beginning: ['خروف', 'خبز', 'خضار'],
+                    middle: ['مخبز', 'أخت', 'بخار'],
+                    end: ['طبخ', 'تاريخ', 'مطبخ']
+                }
+            },
+            {
+                letter: 'د',
+                words: {
+                    beginning: ['دجاج', 'دب', 'دار'],
+                    middle: ['مدرسة', 'يد', 'جدة'],
+                    end: ['أسد', 'ولد', 'جد']
+                }
+            },
+            {
+                letter: 'ذ',
+                words: {
+                    beginning: ['ذئب', 'ذهب', 'ذكر'],
+                    middle: ['أذن', 'مذاق', 'نذر'],
+                    end: ['أخذ', 'منذ', 'لذيذ']
+                }
+            },
+            {
+                letter: 'ر',
+                words: {
+                    beginning: ['رجل', 'رمل', 'ريح'],
+                    middle: ['مرض', 'برد', 'قرد'],
+                    end: ['نهر', 'بحر', 'قمر']
+                }
+            },
+            {
+                letter: 'ز',
+                words: {
+                    beginning: ['زهرة', 'زيت', 'زرع'],
+                    middle: ['مزرعة', 'جزر', 'عزف'],
+                    end: ['خبز', 'أرز', 'عجز']
+                }
+            },
+            {
+                letter: 'س',
+                words: {
+                    beginning: ['سمك', 'سيارة', 'سماء'],
+                    middle: ['مسجد', 'رسم', 'قسم'],
+                    end: ['درس', 'فرس', 'جلس']
+                }
+            },
+            {
+                letter: 'ش',
+                words: {
+                    beginning: ['شمس', 'شجرة', 'شارع'],
+                    middle: ['مشط', 'بشر', 'نشر'],
+                    end: ['عطش', 'فرش', 'رقش']
+                }
+            },
+            {
+                letter: 'ص',
+                words: {
+                    beginning: ['صقر', 'صوت', 'صباح'],
+                    middle: ['مصر', 'قصر', 'عصر'],
+                    end: ['قص', 'رقص', 'خلص']
+                }
+            },
+            {
+                letter: 'ض',
+                words: {
+                    beginning: ['ضفدع', 'ضوء', 'ضرب'],
+                    middle: ['مضرب', 'أضاف', 'رضا'],
+                    end: ['أرض', 'مرض', 'عرض']
+                }
+            },
+            {
+                letter: 'ط',
+                words: {
+                    beginning: ['طائر', 'طبل', 'طعام'],
+                    middle: ['مطر', 'قطة', 'بطة'],
+                    end: ['خط', 'شط', 'قط']
+                }
+            },
+            {
+                letter: 'ظ',
+                words: {
+                    beginning: ['ظل', 'ظهر', 'ظرف'],
+                    middle: ['نظر', 'حظ', 'لظى'],
+                    end: ['حفظ', 'لفظ', 'وعظ']
+                }
+            },
+            {
+                letter: 'ع',
+                words: {
+                    beginning: ['عين', 'عصفور', 'عنب'],
+                    middle: ['معلم', 'جمع', 'سمع'],
+                    end: ['جمع', 'سمع', 'رجع']
+                }
+            },
+            {
+                letter: 'غ',
+                words: {
+                    beginning: ['غراب', 'غزال', 'غيم'],
+                    middle: ['مغرب', 'بغل', 'صغير'],
+                    end: ['فراغ', 'دماغ', 'بلاغ']
+                }
+            },
+            {
+                letter: 'ف',
+                words: {
+                    beginning: ['فيل', 'فراشة', 'فم'],
+                    middle: ['مفتاح', 'كفل', 'رفع'],
+                    end: ['كتف', 'رغيف', 'صف']
+                }
+            },
+            {
+                letter: 'ق',
+                words: {
+                    beginning: ['قطة', 'قلم', 'قمر'],
+                    middle: ['مقص', 'وقت', 'عقل'],
+                    end: ['حق', 'طريق', 'صدق']
+                }
+            },
+            {
+                letter: 'ك',
+                words: {
+                    beginning: ['كتاب', 'كلب', 'كرة'],
+                    middle: ['مكتب', 'ذكر', 'فكر'],
+                    end: ['سمك', 'ملك', 'تحرك']
+                }
+            },
+            {
+                letter: 'ل',
+                words: {
+                    beginning: ['ليمون', 'لحم', 'لون'],
+                    middle: ['ملعب', 'قلم', 'علم'],
+                    end: ['جمل', 'عسل', 'طفل']
+                }
+            },
+            {
+                letter: 'م',
+                words: {
+                    beginning: ['ماء', 'مدرسة', 'موز'],
+                    middle: ['كمثرى', 'رمان', 'جمل'],
+                    end: ['قلم', 'حلم', 'علم']
+                }
+            },
+            {
+                letter: 'ن',
+                words: {
+                    beginning: ['نمر', 'نار', 'نجم'],
+                    middle: ['منزل', 'جنة', 'سنة'],
+                    end: ['لون', 'زمن', 'فن']
+                }
+            },
+            {
+                letter: 'هـ',
+                words: {
+                    beginning: ['هدية', 'هواء', 'هرم'],
+                    middle: ['مهر', 'نهر', 'ظهر'],
+                    end: ['وجه', 'فاكهة', 'جبهة']
+                }
+            },
+            {
+                letter: 'و',
+                words: {
+                    beginning: ['ورد', 'ولد', 'وطن'],
+                    middle: ['سوق', 'نور', 'صوت'],
+                    end: ['عفو', 'نحو', 'علو']
+                }
+            },
+            {
+                letter: 'ي',
+                words: {
+                    beginning: ['يد', 'يوم', 'ياسمين'],
+                    middle: ['بيت', 'عين', 'زيت'],
+                    end: ['كرسي', 'عربي', 'مصري']
+                }
+            }
+        ];
+
+        function createWorksheet(letterData, index) {
+            return `
+                <div class="worksheet" id="worksheet-${index}">
+                    <!-- رأس الصفحة -->
+                    <div class="text-center border-b-2 border-blue-200 pb-4 mb-6">
+                        <h1 class="text-3xl font-bold text-blue-800 mb-2">ورقة عمل حرف ${letterData.letter}</h1>
+                        <p class="text-lg text-gray-600">الصف الأول الابتدائي</p>
+                    </div>
+
+                    <!-- عرض الحرف مع الحركات -->
+                    <div class="bg-blue-50 rounded-lg p-6 mb-6 text-center">
+                        <h2 class="text-xl font-bold text-blue-800 mb-4">الحرف مع الحركات</h2>
+                        <div class="flex justify-around items-center">
+                            <div class="text-center">
+                                <div class="relative">
+                                    <div class="letter-display">${letterData.letter}</div>
+                                    <div class="harakat absolute -top-4 left-1/2 transform -translate-x-1/2">َ</div>
+                                </div>
+                                <p class="position-label mt-2">فتحة</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="relative">
+                                    <div class="letter-display">${letterData.letter}</div>
+                                    <div class="harakat absolute -top-4 left-1/2 transform -translate-x-1/2">ُ</div>
+                                </div>
+                                <p class="position-label mt-2">ضمة</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="letter-display">${letterData.letter}</div>
+                                <div class="harakat">ِ</div>
+                                <p class="position-label mt-2">كسرة</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- الكلمات -->
+                    <div class="flex-1">
+                        <h2 class="text-xl font-bold text-green-800 mb-4 text-center">كلمات تحتوي على حرف ${letterData.letter}</h2>
+                        
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <!-- في أول الكلمة -->
+                            <div class="bg-green-50 rounded-lg p-4">
+                                <h3 class="position-label text-center mb-3 text-green-700">في أول الكلمة</h3>
+                                ${letterData.words.beginning.map(word => `
+                                    <div class="mb-3">
+                                        <div class="word-text text-center font-bold">${word}</div>
+                                        <div class="dotted-line"></div>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <!-- في وسط الكلمة -->
+                            <div class="bg-yellow-50 rounded-lg p-4">
+                                <h3 class="position-label text-center mb-3 text-yellow-700">في وسط الكلمة</h3>
+                                ${letterData.words.middle.map(word => `
+                                    <div class="mb-3">
+                                        <div class="word-text text-center font-bold">${word}</div>
+                                        <div class="dotted-line"></div>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <!-- في آخر الكلمة -->
+                            <div class="bg-red-50 rounded-lg p-4">
+                                <h3 class="position-label text-center mb-3 text-red-700">في آخر الكلمة</h3>
+                                ${letterData.words.end.map(word => `
+                                    <div class="mb-3">
+                                        <div class="word-text text-center font-bold">${word}</div>
+                                        <div class="dotted-line"></div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- تمرين الكتابة -->
+                    <div class="bg-gray-50 rounded-lg p-4 mt-auto">
+                        <h3 class="position-label text-center mb-3 text-gray-700">تمرين الكتابة</h3>
+                        <div class="grid grid-cols-6 gap-2">
+                            ${Array(6).fill().map(() => `
+                                <div class="border-2 border-dashed border-gray-300 h-16 rounded flex items-center justify-center">
+                                    <span class="text-gray-400 text-2xl">${letterData.letter}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- رقم الصفحة -->
+                    <div class="text-center mt-4 text-sm text-gray-500">
+                        صفحة ${index + 1} من 28
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateAllWorksheets() {
+            const container = document.getElementById('worksheets-container');
+            container.innerHTML = letters.map((letter, index) => createWorksheet(letter, index)).join('');
+        }
+
+        function showWorksheet(index) {
+            const worksheets = document.querySelectorAll('.worksheet');
+            if (index === 'all') {
+                worksheets.forEach(ws => ws.style.display = 'flex');
+            } else {
+                worksheets.forEach((ws, i) => {
+                    ws.style.display = i === index ? 'flex' : 'none';
+                });
+            }
+        }
+
+        function printWorksheets() {
+            showWorksheet('all');
+            setTimeout(() => {
+                window.print();
+            }, 100);
+        }
+
+        // إنشاء جميع أوراق العمل عند تحميل الصفحة
+        generateAllWorksheets();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'969d81a064609846',t:'MTc1NDMwNDc1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
